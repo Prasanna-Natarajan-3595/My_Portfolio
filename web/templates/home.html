@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block head %}
+<style type="text/css">
+  .rectangle{
+    background-color: #212529; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #212529;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+</style>
+{% endblock %}
+{% block title %}Prasanna | Maker{% endblock %}
+{% block nav %}
+<li class="nav-item">
+    <a class="nav-link" href="#projects">Projects</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#contact">Contact</a>
+  </li>
+{% endblock %}
+{% block navtext %}
+<span class="navbar-text">
+    Maker
+  </span>
+{% endblock %}
+{% block content %}
+<button onclick="topFunction()" id="myBtn" title="Go to top">_/|\_</button>
+<div class="container" id='about'>
+  <div class="row">
+    <div class="col">
+     <div class='rectangle' style='margin-top:40px;height: 500px;
+     max-width: 800px;'>
+     <img src="images/about.png" alt="Flying Kites"> 
+    </div>
+    </div>
+    
+    <div class="col-sm">
+      <div class='rectangle' style='margin-top:40px;height: 500px;
+      max-width: 800px;'>
+      <h3 style='font-family:monospace;color:#96989a;text-align:center;padding-top:20px;'>About</h3>
+      <pre style='font-family:monospace;font-size:20px;color:#96989a;margin-left:30px;padding-top:100px;'>
+Hi,I'm Prasanna.I am 15 years old.
+
+I love building robots,
+
+making websites and training AI.
+      </pre>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class='container' id='projects'>
+<div class='rectangle' style='height: 500px;
+max-width: 1600px;margin-top:40px;'></div>
+</div>
+
+
+<div class="container" id='contact'>
+  <div class="row">
+    <div class="col">
+     <div class='rectangle' style='margin-top:40px;height: 500px;
+     max-width: 800px;'></div>
+    </div>
+    
+    <div class="col-sm">
+      <div class='rectangle' style='margin-top:40px;height: 500px;
+      max-width: 800px;'></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  //Get the button
+  var mybutton = document.getElementById("myBtn");
+  
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+{% endblock %}
