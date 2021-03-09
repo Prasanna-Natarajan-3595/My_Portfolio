@@ -99,7 +99,12 @@ max-width: 1600px;margin-top:40px;'>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-      <img src="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/hibot3.png" class="d-block w-100" alt="Hibot-3">
+      <picture>
+        <source media="(max-width: 599px)" srcset="" class="d-block w-100">
+        <source media="(min-width: 600px)" srcset="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/hibot3.png" class="d-block w-100">
+        <img src="image.png" class="d-block w-100">
+      </picture>
+      
       <div class="carousel-caption d-none d-md-block">
         <h5>Hibot-3</h5>
         <p>This is a humanoid robot.</p>
