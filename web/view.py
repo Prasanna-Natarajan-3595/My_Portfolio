@@ -1,9 +1,6 @@
-from flask import Blueprint, render_template, request, flash, jsonify,redirect,url_for,session
+from flask import Blueprint, render_template, request, flash,redirect,url_for,session
 from .models import contact
 from . import db
-import json
-from flask_login import login_user, login_required, logout_user, current_user
-
 view = Blueprint('view',__name__)
 
 @view.route('/', methods=['GET', 'POST'])
