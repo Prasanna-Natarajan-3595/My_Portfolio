@@ -39,21 +39,18 @@
 {% endblock %}
 {% block content %}
 <button onclick="topFunction()" id="myBtn" title="Go to top">_/|\_</button>
+
 {% with messages = get_flashed_messages(with_categories=true) %} {% if
   messages %} {% for category, message in messages %} {% if category ==
   'error' %}
-  <div class="alert alert-danger alter-dismissable fade show" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Error!!! </strong>{{ message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {% else %}
-  <div class="alert alert-success alter-dismissable fade show" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success!!! </strong>{{ message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {% endif %} {% endfor %} {% endif %} {% endwith %}
 <div class="container" id='about'>
@@ -128,7 +125,7 @@ max-width: 1600px;margin-top:40px;'>
         <source media="(min-width: 600px)" srcset="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/trans.png" class="d-block w-100">
           <img src="image.png" class="d-block w-100">      
         </picture>
-      <img src="" class="d-block w-100" alt="...">
+      
       <div class="carousel-caption d-none d-md-block">
         <h5>ThanOS gaunlet</h5>
         <p>This is a transmitter and receiver :).</p>
@@ -157,9 +154,9 @@ max-width: 1600px;margin-top:40px;'>
      max-width: 800px;'>
      <h3 style='font-family:monospace;color:#96989a;text-align:center;padding-top:20px;'>Contact me</h3>
     
-<form methods='POST' style='padding-top:40px;'>
+<form method='POST' style='padding-top:40px;'>
   <div class="form-floating">
-    <input type="text" class="form-control" id="Name" placeholder="Your Name">
+    <input type="text" class="form-control" name="Name" placeholder="Your Name">
     <label for="floatingPassword">Name</label>
   </div>
   <div style='padding-top:20px;'></div>
@@ -167,13 +164,13 @@ max-width: 1600px;margin-top:40px;'>
   <div style='padding-top:20px;'></div>
 
   <div class="form-floating mb-3">
-    <input type="email" class="form-control" id="Email" placeholder="name@example.com">
+    <input type="email" class="form-control" name="Email" placeholder="name@example.com">
     <label for="floatingInput">Email</label>
   </div>
   <div style='padding-top:20px;'></div>
 
   <div class="form-floating">
-    <textarea id='Comments' class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+    <textarea name='Comments' class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
     <label for="floatingTextarea2">Comments</label>
   </div>
   <div style='text-align:center;'>
