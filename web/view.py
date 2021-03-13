@@ -1,11 +1,12 @@
 from flask import Blueprint, render_template, request, flash,redirect,url_for,session
-from .models import contact
-from . import db
+from flask_mail import Mail,Message
+from .__init__ import *
+
 view = Blueprint('view',__name__)
 
 @view.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method == 'POST':
+   if request.method == 'POST':
         name = request.form.get('Name')
         email = request.form.get('Email')
         comments = request.form.get('Comments')
@@ -16,47 +17,37 @@ def home():
         elif len(comments)<1:
            flash('Your comment must be aleast 1 characters long', category='error')
         else:
-           new_comment = contact(name=name,email=email,comments=comments)
-           db.session.add(new_comment)
-           db.session.commit()
+           def sendmessage(msghead,sender,recipients,body):
+              app = Flask(__name__)
+              mail = Mail(app)
+              app.config['MAIL_SERVER']='smtp.gmail.com'
+              app.config['MAIL_PORT'] = 465
+              app.config['MAIL_USERNAME'] = 'noreplyprasanna@gmail.com'
+              app.config['MAIL_PASSWORD'] = 'Prasanna@1234'
+              app.config['MAIL_USE_TLS'] = False
+              app.config['MAIL_USE_SSL'] = True
+              mail = Mail(app)
+              msg = Message(msghead,sender = sender,recipients = recipients)
+              msg.body = body
+              mail.send(msg)
+              
+           sendmessage('Prasannan-thanks for commenting','noreplyprasanna@gmail.com',[email],f"""Dear {name},
+I have received your comment.Thanks for commenting on my website.
+I will get you soon.Have a nice day!
+Don't reply to this email!!!
+             Thanks!!!
+Regards
+Prasanna-bot""")
+           sendmessage('Prasannan-You got a new comment on your website','noreplyprasanna@gmail.com',['prasannanatarajan3595@gmail.com'],f"""Dear Prasanna,
+You got a new comment on your website...
+Name:{name}
+Email:{email}
+Comment:{comments}
+
+             Thanks!!!
+Regards
+Prasanna-bot""")
            flash('Thanks for commenting on my website!!! Get you soon...', category='success')
         
     
-    return render_template('home.html')
-
-@view.route('/test')
-def test():
-    return render_template('test.html')
-
-@view.route('/login', methods=['POST','GET'])
-def login():
-   if request.method == 'POST':
-      email = request.form.get('email')
-      password = request.form.get('password')
-      if email == 'prasannanatarajan3595@gmail.com':
-         if password == '2005':
-            flash('Login successfull!', category='sucess')
-            session['email'] = email
-            session['password'] = password
-            return redirect(url_for('view.admin'))
-         else:
-            flash('Incorrect password!',category='error')
-      else:
-         flash('Incorrect email!',category='error')
-   return render_template('login.html')
-
-@view.route('/admin')
-def admin():
-   if session['email'] == 'prasannanatarajan3595@gmail.com':
-      if session['password'] == '2005':
-         contacts = contact.query.all()
-         return render_template('admin.html',comment=contacts)
-   else:
-      return redirect(url_for('view.login'))
-
-@view.route('/signout')
-def signout():
-   session.pop('email', None)
-   session.pop('password', None)
-   flash('You are logged out!', category='success')
-   return redirect(url_for('view.home'))
+   return render_template('home.html')

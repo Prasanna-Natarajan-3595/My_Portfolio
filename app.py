@@ -1,6 +1,7 @@
-from web import create_app
+from web import *
 
-app = create_app()
+apps = app()
+app = apps.createapp()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
