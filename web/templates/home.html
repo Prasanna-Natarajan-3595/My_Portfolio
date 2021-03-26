@@ -4,9 +4,67 @@
 <style type="text/css">
   .rectangle{
     background-color: #212529; 
-    border-radius: 8px;
+    
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
+  
+
+body{overflow:hidden;}
+
+html body [data-ca3_iconfont="ETmodules"]::before {
+  font-family: "ETmodules";
+}
+[data-ca3_icon]::before {
+  font-weight: normal;
+  content: attr(data-ca3_icon);
+}
+
+.ca3-scroll-down-arrow {
+background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2hldnJvbl90aGluX2Rvd24iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiBmaWxsPSJ3aGl0ZSIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBhdGggZD0iTTE3LjQxOCw2LjEwOWMwLjI3Mi0wLjI2OCwwLjcwOS0wLjI2OCwwLjk3OSwwYzAuMjcsMC4yNjgsMC4yNzEsMC43MDEsMCwwLjk2OWwtNy45MDgsNy44M2MtMC4yNywwLjI2OC0wLjcwNywwLjI2OC0wLjk3OSwwbC03LjkwOC03LjgzYy0wLjI3LTAuMjY4LTAuMjctMC43MDEsMC0wLjk2OWMwLjI3MS0wLjI2OCwwLjcwOS0wLjI2OCwwLjk3OSwwTDEwLDEzLjI1TDE3LjQxOCw2LjEwOXoiLz48L3N2Zz4=);
+background-size: contain;
+background-repeat: no-repeat;
+}
+
+.ca3-scroll-down-link {
+cursor:pointer;
+height: 60px;
+width: 80px;
+margin: 0px 0 0 -40px;
+line-height: 60px;
+position: absolute;
+left: 50%;
+bottom: 0px;
+color: #FFF;
+text-align: center;
+font-size: 70px;
+z-index: 100;
+text-decoration: none;
+text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
+
+-webkit-animation: ca3_fade_move_down 2s ease-in-out infinite;
+-moz-animation:    ca3_fade_move_down 2s ease-in-out infinite;
+animation:         ca3_fade_move_down 2s ease-in-out infinite;
+}
+
+
+/*animated scroll arrow animation*/
+@-webkit-keyframes ca3_fade_move_down {
+0%   { -webkit-transform:translate(0,-20px); opacity: 0;  }
+50%  { opacity: 1;  }
+100% { -webkit-transform:translate(0,20px); opacity: 0; }
+}
+@-moz-keyframes ca3_fade_move_down {
+0%   { -moz-transform:translate(0,-20px); opacity: 0;  }
+50%  { opacity: 1;  }
+100% { -moz-transform:translate(0,20px); opacity: 0; }
+}
+@keyframes ca3_fade_move_down {
+0%   { transform:translate(0,-20px); opacity: 0;  }
+50%  { opacity: 1;  }
+100% { transform:translate(0,20px); opacity: 0; }
+}
+
+
   #myBtn {
     display: none;
     position: fixed;
@@ -27,10 +85,10 @@
 {% block title %}Prasanna | Maker{% endblock %}
 {% block nav %}
 <li class="nav-item">
-    <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link active" href="#projects">My Projects</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#contact">Contact</a>
+    <a class="nav-link active" href="#contact">Say hello</a>
   </li>
 {% endblock %}
 {% block navtext %}
@@ -54,156 +112,11 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {% endif %} {% endfor %} {% endif %} {% endwith %}
-<div class="container" id='about'>
-  <div class="row">
-    <div class="col">
-     <div class='rectangle' style='margin-top:40px;height: 500px;
-     max-width: 800px;'>
-     <h3 style='font-family:monospace;color:#96989a;text-align:center;padding-top:20px;'>Me</h3>
-     <div style='padding-top:10px;text-align:center;'>
-     <img src="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/about.png" alt="My pic" width='370px' class="img-thumbnail"> 
-     </div>
-    </div>
-    </div>
-    
-    <div class="col-sm">
-      <div class='rectangle' style='margin-top:40px;height: 500px;
-      max-width: 800px;'>
-      <h3 style='font-family:monospace;color:#96989a;text-align:center;padding-top:20px;'>About</h3>
-      <p style='font-family:monospace;font-size:20px;color:#96989a;margin-left:30px;padding-top:80px;'>
-Hi,I'm Prasanna.
-<br>
-<br>
-I love building robots,
-<br>
-<br>
-making websites and training AI.
-      </p>
-    </div>
-    </div>
-  </div>
+<div class='rectangle' style='max-width: auto;height:668px;text-align:center;'>
+  <h1 style='color:whitesmoke;font-family:"eurostile", sans-serif;'>Hi,I am Prasanna</h1>
+  <h2 style='font-family:monospace;'>I build </h2>
+  <a class="ca3-scroll-down-link ca3-scroll-down-arrow" data-ca3_iconfont="ETmodules" data-ca3_icon=""></a>
 </div>
-
-<div class='container' id='projects'>
-<div class='rectangle' style='height: 900px;
-max-width: 1600px;margin-top:40px;'>
-<h3 style='font-family:monospace;color:#96989a;text-align:center;padding-top:20px;padding-bottom:40px;'>Projects</h3>
-<div id="carouselExampleDark" class="carousel carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-     
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="10000">
-      <picture>
-        <source media="(max-width: 599px)" srcset="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/hibot3-small.png" class="d-block w-100">
-        <source media="(min-width: 600px)" srcset="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/hibot3.png" class="d-block w-100">
-        <img src="image.png" class="d-block w-100">
-      </picture>
-      
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Hibot-3</h5>
-        <p>This is a humanoid robot.</p>
-      </div>
-    </div>
-    <div class="carousel-item" data-bs-interval="2000">
-      <picture>
-        <source media="(max-width: 599px)" srcset="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/hibot3-small.png" class="d-block w-100">
-        <source media="(min-width: 600px)" srcset="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/food.png" class="d-block w-100">
-          <img src="image.png" class="d-block w-100">
-      </picture>
-      
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Food Algo</h5>
-        <p>Predicts your food.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <picture>
-        <source media="(max-width: 599px)" srcset="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/tans.png" class="d-block w-100">
-        <source media="(min-width: 600px)" srcset="https://raw.githubusercontent.com/Prasanna-Natarajan-3595/My_Portfolio/master/web/templates/images/trans.png" class="d-block w-100">
-          <img src="image.png" class="d-block w-100">      
-        </picture>
-      
-      <div class="carousel-caption d-none d-md-block">
-        <h5>ThanOS gaunlet</h5>
-        <p>This is a transmitter and receiver :).</p>
-      </div>
-
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"  data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"  data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="container" id='contact' style='margin-bottom:40px;'>
-  <div class="row">
-    <div class="col">
-     <div class='rectangle' style='margin-top:40px;height: 500px;
-     max-width: 800px;'>
-     <h3 style='font-family:monospace;color:#96989a;text-align:center;padding-top:20px;'>Contact me</h3>
-    
-<form method='POST' style='padding-top:40px;'>
-  <div class="form-floating">
-    <input type="text" class="form-control" name="Name" placeholder="Your Name">
-    <label for="floatingPassword">Name</label>
-  </div>
-  <div style='padding-top:20px;'></div>
-
-  <div style='padding-top:20px;'></div>
-
-  <div class="form-floating mb-3">
-    <input type="email" class="form-control" name="Email" placeholder="name@example.com">
-    <label for="floatingInput">Email</label>
-  </div>
-  <div style='padding-top:20px;'></div>
-
-  <div class="form-floating">
-    <textarea name='Comments' class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-    <label for="floatingTextarea2">Comments</label>
-  </div>
-  <div style='text-align:center;'>
-    <input type="submit" class="btn btn-outline-light" value='submit' style='margin-top:10px;'>
-  </div>
-</form>
-    </div>
-    </div>
-    
-    <div class="col-sm">
-      <div class='rectangle' style='margin-top:40px;height: 500px;
-      max-width: 800px;'>
-      <h2 style='font-family:monospace;color:#96989a;text-align:center;padding-top:20px;'>Contacts</h3>
-    <div style='font-family:monospace;font-size:22px;color:#96989a;text-align:center;padding-top:20px;'>
-      <div style='padding-top:80px;'></div>
-      Twitter:<a href="https://twitter.com/PRASANN30279359" target='_blank'>@PRASANN30279359</a>
-<br>
-<div style='padding-top:40px;'></div>
-
-Github:<a href="https://github.com/Prasanna-Natarajan-3595" target='_blank'>Prasanna-Natarajan-3595</a>
-<br>
-<div style='padding-top:40px;'></div>
-Youtube:<a href="https://www.youtube.com/channel/UCyqfcVuppv6s70qNHKQQ2xA" target='_blank'>Prasanna</a>
-
-<div style='padding-top:20px;'></div>
-
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
-
 <script>
   //Get the button
   var mybutton = document.getElementById("myBtn");
@@ -225,4 +138,5 @@ Youtube:<a href="https://www.youtube.com/channel/UCyqfcVuppv6s70qNHKQQ2xA" targe
     document.documentElement.scrollTop = 0;
   }
   </script>
+  <a href='https://www.freepik.com/vectors/people'>People vector created by freepik - www.freepik.com</a>
 {% endblock %}
