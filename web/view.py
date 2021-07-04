@@ -41,7 +41,7 @@ Prasanna-bot""")
            sendmessage('Prasannan-You got a new comment on your website','noreplyprasanna@gmail.com',['prasannanatarajan3595@gmail.com'],f"""Dear Prasanna,
 You got a new comment on your website...
 Name:{name}
-Email:{email}
+Email: {email}
 Comment:{comments}
 
              Thanks!!!
