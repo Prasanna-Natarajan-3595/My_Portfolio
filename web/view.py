@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash,redirect,url_for,session
 from flask_mail import Mail,Message
 from .__init__ import *
+from .mail_manager import *
 
 view = Blueprint('view',__name__)
 
@@ -16,21 +17,7 @@ def home():
            flash('Enter valid email', category='error')
         elif len(comments)<1:
            flash('Your comment must be aleast 1 characters long', category='error')
-        else:
-           def sendmessage(msghead,sender,recipients,body):
-              app = Flask(__name__)
-              mail = Mail(app)
-              app.config['MAIL_SERVER']='smtp.gmail.com'
-              app.config['MAIL_PORT'] = 465
-              app.config['MAIL_USERNAME'] = 'noreplyprasanna@gmail.com'
-              app.config['MAIL_PASSWORD'] = 'Prasanna@1234'
-              app.config['MAIL_USE_TLS'] = False
-              app.config['MAIL_USE_SSL'] = True
-              mail = Mail(app)
-              msg = Message(msghead,sender = sender,recipients = recipients)
-              msg.body = body
-              mail.send(msg)
-              
+        else:              
            sendmessage('Prasannan-thanks for commenting','noreplyprasanna@gmail.com',[email],f"""Dear {name},
 I have received your comment.Thanks for commenting on my website.
 I will get you soon.Have a nice day!
