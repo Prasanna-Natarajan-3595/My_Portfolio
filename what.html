@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>prasannan-robots | What I do</title>
+    <link rel="shortcut icon" href="asset/V_C new logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  </head>
+  <body>
+      
+      <section class="hero is-danger is-fullheight">
+        <div class="hero-head">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                  <a class="navbar-item" href="/">
+                    <h5 class="title is-5 is-family-monospace" style="color:white">prasannan-robots</h5>
+                  </a>
+              
+                  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                  </a>
+                </div>
+              
+                <div id="navbarBasicExample" class="navbar-menu">
+                  
+                  <div class="navbar-end">
+                    <div class="navbar-item">
+                        <a class="navbar-item">
+                            Contact Me
+                          </a>
+                          <a class="navbar-item">
+                            My Projects
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+        <div class="hero-body">
+           
+              <nav class="level">
+                  <div class="tile is-parent">
+                <div class="container has-text-centered">
+                    <p class="title">
+                      What I do?
+                    </p>
+                    <p class="subtitle">
+                      By Coding
+                    </p>
+                    
+                </div></div>
+                  <div style="overflow-y:scroll;">
+                    <div class="tile is-parent">
+                      <article class="tile is-child notification is-dark">
+                        <p class="title is-family-monospace">V_nex</p>
+                        <p class="subtitle">A platform to share Intelligence</p>
+                        <div class="content">
+                          <a href="https://v-nex.herokuapp.com/" target="_blank">
+                              Visit Portal
+                          </a>
+                        </div>
+                      </article>
+                    </div> 
+                    <div class="tile is-parent">
+                      <article class="tile is-child notification is-dark">
+                        <p class="title is-family-monospace">V_coders</p>
+                        <p class="subtitle">A team built to automate things using AI...</p>
+                        <div class="content">
+                          <a href="https://coders-v.github.io/" target="_blank">
+                              Visit Portal
+                          </a>
+                        </div>
+                      </article>
+                      </div>
+                      
+                  </div>
+                  <div class="tile is-parent">
+                    <article class="tile is-child notification is-dark">
+                      <p class="title is-family-monospace">V_Roboters</p>
+                      <p class="subtitle">A team built to automate things by physical machines...</p>
+                      <div class="content">
+                        <a href="https://github.com/v-robots" target="_blank">
+                            Visit Portal
+                        </a>
+                      </div>
+                    </article>
+              </div> 
+              </nav>
+              
+            </div>
+        
+        <div class="hero-foot">
+            <nav class="tabs is-boxed is-fullwidth">
+              <div class="container">
+                <ul>
+                    <li>
+                      <a href="index2.html">Why I do</a>
+                    </li>
+                    <li>
+                      <a href="how.html">How I do</a>
+                    </li>
+                    <li class="is-active">
+                      <a href="what.html">What I do</a>
+                    </li>
+                    <li>
+                        <a href="contacts.html">Contact Me</a>
+                      </li>
+                  </ul>
+              </div>
+            </nav>
+          </div>
+      </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+      
+          // Add a click event on each of them
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+      
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+      
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+      
+            });
+          });
+        }
+      
+      });
+  </script>
+  </body>
+</html>
