@@ -1,4 +1,109 @@
-<form action="/answer" method="POST">
-    <input type="text" name="question" placeholder="Ask me a question">
-    <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>prasannan-robots</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="static/V_C new logo.png" type="image/x-icon" />
+    <style>
+        body {
+            background-color: #000;
+            color: #00cc66;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        #terminal {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            box-sizing: border-box;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        #input-line {
+            display: flex;
+            align-items: center;
+        }
+
+        #input-line input[type="text"] {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: #00cc66;
+            font-family: inherit;
+            font-size: inherit;
+            margin: 0;
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        #input-line input[type="text"]:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal">
+        <p>Welcome to My Portfolio!</p>
+        <p>Type 'help' to get started.</p>
+        <div id="history"></div>
+        <div id="input-line">
+            <span>$&nbsp;</span>
+            <input type="text" id="command-input" autofocus autocomplete="off">
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('command-input');
+        input.addEventListener('keydown', handleInput);
+
+        function handleInput(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const command = input.value.trim();
+                processCommand(command);
+            }
+        }
+
+        function processCommand(command) {
+        // Send command to the server for processing
+        fetch('/process-command', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"command": command })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the output received from the server
+            const outputDiv = document.createElement('div');
+            outputDiv.innerText = `$ ${command}`;
+            document.getElementById('history').appendChild(outputDiv);
+
+            const outputMessage = document.createElement('div');
+            outputMessage.innerText = data.output[0]+"\n";
+            document.getElementById('history').appendChild(outputMessage);
+
+            scrollToBottom();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        input.value = '';
+    }
+
+        function scrollToBottom() {
+            const terminalDiv = document.getElementById('terminal');
+            terminalDiv.scrollTop = terminalDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
