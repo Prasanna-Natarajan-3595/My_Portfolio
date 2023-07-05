@@ -46,21 +46,70 @@
         #input-line input[type="text"]:focus {
             outline: none;
         }
+
+        #loading-text {
+            display: none;
+            margin-top: 10px;
+            color: #00cc66;
+            font-size: 14px;
+        }
+
+        .loading-animation {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #00cc66;
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="terminal">
-        <p>Welcome to My Portfolio!</p>
-        <p>Type 'help' to get started.</p>
+        
+        <pre id="banner">
+ th    is          face 
+ se    ri         ous  ly 
+ ey    eP         ri      
+ `8b  d8'         gh      
+  `8bd8'          te  ye 
+    YP            `Y88P'
+               
+         CmouthD
+        
+     prasannan-robots</pre>
+        <p>This is my silicon version. All of the replies about carbon version may not be true.</p>
+        
+        <p>Try asking me to tell me about myself</p>
         <div id="history"></div>
         <div id="input-line">
             <span>$&nbsp;</span>
             <input type="text" id="command-input" autofocus autocomplete="off">
         </div>
+        <div id="loading-text">
+            <span class="loading-animation"></span> Loading...
+        </div>
     </div>
 
     <script>
         const input = document.getElementById('command-input');
+        const loadingText = document.getElementById('loading-text');
+        const loadingAnimation = document.querySelector('.loading-animation');
+
         input.addEventListener('keydown', handleInput);
 
         function handleInput(event) {
@@ -72,33 +121,44 @@
         }
 
         function processCommand(command) {
-        // Send command to the server for processing
-        fetch('/process-command', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({"command": command })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Display the output received from the server
-            const outputDiv = document.createElement('div');
-            outputDiv.innerText = `$ ${command}`;
-            document.getElementById('history').appendChild(outputDiv);
+            // Display loading text and animation
+            loadingText.style.display = 'block';
+            loadingAnimation.style.display = 'inline-block';
 
-            const outputMessage = document.createElement('div');
-            outputMessage.innerText = data.output[0]+"\n";
-            document.getElementById('history').appendChild(outputMessage);
+            // Send command to the server for processing
+            fetch('/process-command', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({"command": command })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide loading text and animation
+                loadingText.style.display = 'none';
+                loadingAnimation.style.display = 'none';
 
-            scrollToBottom();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+                // Display the output received from the server
+                const outputDiv = document.createElement('div');
+                outputDiv.innerText = `$ ${command}`;
+                document.getElementById('history').appendChild(outputDiv);
 
-        input.value = '';
-    }
+                const outputMessage = document.createElement('div');
+                outputMessage.innerText = data.output[0]+"\n";
+                document.getElementById('history').appendChild(outputMessage);
+
+                scrollToBottom();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Hide loading text and animation on error
+                loadingText.style.display = 'none';
+                loadingAnimation.style.display = 'none';
+            });
+
+            input.value = '';
+        }
 
         function scrollToBottom() {
             const terminalDiv = document.getElementById('terminal');

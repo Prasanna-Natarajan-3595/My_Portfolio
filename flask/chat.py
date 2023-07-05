@@ -154,5 +154,6 @@ class message_history_base:
     
 class message(message_history_base):
     def load_persona(self):
-        summary = os.environ.get('SUMMARY')
+        with open('static/persona.txt','r') as f:
+            summary = f.read()
         self.add_system(f"Hey this is the summary of the person {summary} Now pretend that you are that person")
