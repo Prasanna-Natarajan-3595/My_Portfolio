@@ -64,27 +64,37 @@
         }
 
         .loading-animation {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #00cc66;
-            animation: pulse 1.2s ease-in-out infinite;
-        }
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent; /* Added border to create the rotating line effect */
+    border-radius: 50%;
+    animation: rotate 1.2s linear infinite; /* Changed the animation name and timing function */
+}
 
-        @keyframes pulse {
-            0% {
-                transform: scale(0.8);
-                opacity: 0.7;
-            }
-            50% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(0.8);
-                opacity: 0.7;
-            }
-        }
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(90deg);
+        border-top-color: #00cc66; /* Change the border color to the desired color */
+    }
+    50% {
+        transform: rotate(180deg);
+        border-top-color: transparent;
+        border-right-color: #00cc66; /* Change the border color to the desired color */
+    }
+    75% {
+        transform: rotate(270deg);
+        border-right-color: transparent;
+        border-bottom-color: #00cc66; /* Change the border color to the desired color */
+    }
+    100% {
+        transform: rotate(360deg);
+        border-bottom-color: transparent;
+        border-left-color: #00cc66; /* Change the border color to the desired color */
+    }
+}
     </style>
 </head>
 <body>
@@ -104,13 +114,14 @@
         <p>This is my silicon version. All of the replies about carbon version may not be true.</p>
         
         <p>Try asking me to tell me about myself</p>
-        <div id="history"></div>
+        <div id="history">
+        </div>
         <div id="input-line">
             <span>$&nbsp;</span>
             <input type="text" id="command-input" autofocus autocomplete="off">
         </div>
         <div id="loading-text">
-            <span class="loading-animation"></span> Loading...
+            <span class="loading-animation"></span> Thinking...
         </div>
     </div>
 
@@ -128,7 +139,6 @@
                 processCommand(command);
             }
         }
-
         function processCommand(command) {
             // Display loading text and animation
             loadingText.style.display = 'block';

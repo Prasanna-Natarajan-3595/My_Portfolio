@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request,jsonify,session
-import chat
+from prompthandler import PromptHandler
 import dotenv,os
 from datetime import timedelta
 
@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 # Set up your OpenAI API credentials
 OPENAI_API_KEY= os.environ.get('OPENAI_API_KEY')
-chat_model = chat.chat_api(OPENAI_API_KEY)
-app.secret_key = os.environ.get('SECRET_KEY')
+chat_model = PromptHandler(api_key=OPENAI_API_KEY)
+app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 # Define your routes and other Flask configurations here
 @app.route('/')
 def index():
@@ -22,14 +22,17 @@ def index():
 def answer():
     command = request.json['command']
     base_history_messages = session.get('message_history')
-    base_history = chat.message()
+
     if base_history_messages:
-        base_history.messages = base_history_messages
+        chat_model.load(base_history_messages)
     else:
-        base_history.load_persona()
-    print(base_history.messages)
-    answer = chat_model.get_completion(base_history,message=command,update_history=True)
-    session['message_history'] = base_history.messages
+        with open('static/persona.txt','r') as f:
+            summary = f.read()
+        chat_model.add_system(f"Hey this is the summary of the person {summary} Now pretend that you are that person")
+
+    answer = chat_model.get_completion(message=command,update_history=True)
+    print(answer)
+    session['message_history'] = chat_model.dump()
     
     return jsonify({'output': answer})
 
