@@ -111,10 +111,20 @@
          CmouthD
         
      prasannan-robots</pre>
-        <p>This is my silicon version. All of the replies about carbon version may not be true.</p>
+        <p>This is my silicon version. All of the replies about <a href="https://prasannan-robots.github.io/" target="_blank">carbon version</a> may not be true.</p>
         
         <p>Try asking me to tell me about myself</p>
+        {% if history %}
+        {% for i in history %}
+        {% if i['role'] == 'user' %}
+        <div>$ {{i['content']}}</div>
+        {% elif i['role'] == 'assistant' %}
+        <div>{{i['content']}}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
         <div id="history">
+            
         </div>
         <div id="input-line">
             <span>$&nbsp;</span>
@@ -157,14 +167,13 @@
                 // Hide loading text and animation
                 loadingText.style.display = 'none';
                 loadingAnimation.style.display = 'none';
-
                 // Display the output received from the server
                 const outputDiv = document.createElement('div');
                 outputDiv.innerText = `$ ${command}`;
                 document.getElementById('history').appendChild(outputDiv);
 
                 const outputMessage = document.createElement('div');
-                outputMessage.innerText = data.output[0]+"\n";
+                outputMessage.innerText = data.output+"\n";
                 document.getElementById('history').appendChild(outputMessage);
 
                 scrollToBottom();

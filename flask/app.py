@@ -16,25 +16,28 @@ app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 # Define your routes and other Flask configurations here
 @app.route('/')
 def index():
-    return render_template('index.html')
+    history = session.get('message_history')
+    if history:
+        return render_template('index.html',history=history['messages'])
+    else:
+        return render_template('index.html')
 
 @app.route('/process-command', methods=['POST'])
 def answer():
     command = request.json['command']
     base_history_messages = session.get('message_history')
-
     if base_history_messages:
         chat_model.load(base_history_messages)
     else:
         with open('static/persona.txt','r') as f:
             summary = f.read()
-        chat_model.add_system(f"Hey this is the summary of the person {summary} Now pretend that you are that person")
+        chat_model.add_system(f"Hey this is the summary of the person {summary} Now pretend that you are that person",to_head=True)
 
     answer = chat_model.get_completion(message=command,update_history=True)
-    print(answer)
-    session['message_history'] = chat_model.dump()
     
+    session['message_history'] = chat_model.dump()
+    print(answer)
     return jsonify({'output': answer})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
