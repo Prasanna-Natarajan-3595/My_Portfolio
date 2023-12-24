@@ -1,0 +1,76 @@
+body {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #00cc66;
+}
+
+header, footer {
+    background-color: #000;
+    color: #00cc66;
+    padding: 10px 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+text{
+    color: #00cc66;
+    font-family: monospace;
+}
+.profile-pic {
+    width: 100px;
+    border-radius: 50%;
+  }
+  
+  .title {
+    font-size: 2em;
+    text-align: center;
+  }
+  
+  .subtitle {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  
+  .nav-link {
+    display: block;
+    margin: 20px 0;
+    color: #00cc66;
+    
+    font-size: 1.2em;
+  }
+
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* This makes the page fill the full height of the viewport */
+    /* This is a light grey background */
+}
+
+.div {
+    text-align: center; /* This centers the text inside the div */
+    padding: 20px; /* This adds some space around the content inside the div */
+     /* This is a white background */
+    border-radius: 10px; /* This makes the corners of the div slightly rounded */
+}
+.box {
+    width: 125px;
+    height: 125px;
+    border-radius: 9px;
+  }
+
+.content-row {
+    display: flex;
+    border-radius: 10px;
+    background-color:#15141a;
+    align-items: center;
+}
+  
+.content-row img {
+    margin-right: 20px;
+}
